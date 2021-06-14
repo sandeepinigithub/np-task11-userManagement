@@ -10,7 +10,7 @@
                 <div class="col-sm-4">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Search&hellip;">
+                        <input type="text" class="form-control" placeholder="Search&hellip;" [(ngModel)] = "searchField">
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor = "let user of users">
+                <tr *ngFor = "let user of (users | userFilter : searchField)">
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.username}}</td>

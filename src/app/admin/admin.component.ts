@@ -9,6 +9,7 @@ import { UserService } from '../services/user.service';
 export class AdminComponent implements OnInit {
 
   users : any[] ;
+  searchField : any;
 
   constructor(private userService : UserService) {
     this.users = this.userService.userList;

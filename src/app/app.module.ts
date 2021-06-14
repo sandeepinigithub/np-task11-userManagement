@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { AdminComponent } from './admin/admin.component';
+import { UserFilterPipe } from './pipes/user-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { AdminComponent } from './admin/admin.component';
     HeaderComponent,
     HomeComponent,
     UsersComponent,
-    AdminComponent
+    AdminComponent,
+    UserFilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
