@@ -98,4 +98,19 @@ export class UserService {
   ]
 
   constructor() { }
+
+  addUser(user:users){
+    console.log(user);
+    this.userList.push(user);
+    
+  }
+  editUser(user : users){
+    const index = this.userList.findIndex(c=>c.id === user.id);
+    this.userList[index] = user ;
+  }
+  deleteUser(id : number){
+    const user = this.userList.findIndex(c=>c.id == id)
+    this.userList.splice(user,1);
+  }
+
 }

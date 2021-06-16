@@ -8,15 +8,19 @@ import { UserService } from '../services/user.service';
 })
 export class AdminComponent implements OnInit {
 
-  users : any[] ;
-  searchField : any;
+  users: any[];
+  searchField: any;
 
-  constructor(private userService : UserService) {
-    this.users = this.userService.userList;
-   }
+  constructor(private userService: UserService) {
+    
+  }
 
   ngOnInit(): void {
-
+    this.users = this.userService.userList;
   }
+  delete(id :number ){
+    this.userService.deleteUser(id);
+  }
+
 
 }
