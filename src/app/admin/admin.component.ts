@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { users, UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,6 +10,8 @@ export class AdminComponent implements OnInit {
 
   users: any[];
   searchField: any;
+  viewData : any;
+  
 
   constructor(private userService: UserService) {
     
@@ -17,6 +19,10 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.users = this.userService.userList;
+  }
+  view(user:any){
+    this.viewData = user;
+    console.log(user)   
   }
   delete(id :number ){
     this.userService.deleteUser(id);

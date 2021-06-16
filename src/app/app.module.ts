@@ -10,6 +10,8 @@ import { AdminComponent } from './admin/admin.component';
 import { UserFilterPipe } from './pipes/user-filter.pipe';
 import { FormsModule } from '@angular/forms';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +19,13 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     UsersComponent,
     AdminComponent,
-    UserFilterPipe
+    UserFilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

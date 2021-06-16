@@ -4,13 +4,14 @@
             <div class="row">
                 <div class="d-flex col-sm-8">
                     <h2>User List</h2>
-                    <button type="button" class="btn btn-primary rounded-pill mx-5"><i class="bi bi-plus"></i> Add New User</button>
+                    <button type="button" class="btn btn-primary rounded-pill mx-5" data-bs-toggle="modal" data-bs-target="#addUser"><i
+                            class="bi bi-plus"></i> Add New User</button>
                 </div>
-                
+
                 <div class="col-sm-4">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Search&hellip;" [(ngModel)] = "searchField">
+                        <input type="text" class="form-control" placeholder="Search&hellip;" [(ngModel)]="searchField">
                     </div>
                 </div>
             </div>
@@ -28,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor = "let user of (users | userFilter : searchField)">
+                <tr *ngFor="let user of (users | userFilter : searchField)">
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.username}}</td>
@@ -36,15 +37,75 @@
                     <td>{{user.role}}</td>
                     <td>{{user.status}}</td>
                     <td>
-                        <a class="view" title="View" data-toggle="tooltip"><i class="bi bi-eye"></i></a>
-                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
-                        <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete(user.id)"><i class="bi bi-trash-fill"></i></a>
+                        <a class="view" title="View" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#viewUser" (click)="view(user)"><i class="bi bi-eye"></i></a>
+                        <a class="edit" title="Edit" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#editUser" (click)="delete(user.id)"><i class="bi bi-pencil-square"></i></a>
+                        <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete(user.id)"><i
+                                class="bi bi-trash-fill"></i></a>
                     </td>
-                </tr>        
+                </tr>
             </tbody>
         </table>
     </div>
-    <div class="card">
+    <ng-container>
+        <div class="modal fade" tabindex="-1" id="addUser" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
 
-    </div>
-</div>     
+    <ng-container>
+        <div class="modal fade" tabindex="-1" id="editUser" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit User Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container>
+        <div class="modal fade" tabindex="-1" id="viewUser" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">User Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                       <div class="container">
+                        <p class="fs-5 text-uppercase text-danger"><i class="bi bi-card-text"></i> Id : <span class="text-capitalize text-dark">{{viewData.id}}</span></p>
+                        <p class="fs-5 text-uppercase text-danger"><i class="bi bi-person-square"></i> Name : <span class="text-capitalize text-dark">{{viewData.name}}</span></p>
+                        <p class="fs-5 text-uppercase text-danger"><i class="bi bi-arrow-right-circle"></i> Username : <span class="text-capitalize text-dark">{{viewData.username}}</span></p>
+                        <p class="fs-5 text-uppercase text-danger"><i class="bi bi-envelope"></i> Email : <span class="text-capitalize text-dark">{{viewData.email}}</span></p>
+                        <p class="fs-5 text-uppercase text-danger"><i class="bi bi-person"></i> Role : <span class="text-capitalize text-dark">{{viewData.role}}</span></p>
+                        <p class="fs-5 text-uppercase text-danger"><i class="bi bi-clock"></i> Status : <span class="text-capitalize text-dark">{{viewData.status}}</span></p>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
