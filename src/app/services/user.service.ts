@@ -55,51 +55,12 @@ export class UserService {
       "role": "admin",
       "status": "active"
     },
-    {
-      "id": 6,
-      "name": "Mrs. Dennis Schulist",
-      "username": "Leopoldo_Corkery",
-      "email": "Karley_Dach@jasper.info",
-      "role": "admin",
-      "status": "active"
-    },
-    {
-      "id": 7,
-      "name": "Kurtis Weissnat",
-      "username": "Elwyn.Skiles",
-      "email": "Telly.Hoeger@billy.biz",
-      "role": "admin",
-      "status": "active"
-    },
-    {
-      "id": 8,
-      "name": "Nicholas Runolfsdottir V",
-      "username": "Maxime_Nienow",
-      "email": "Sherwood@rosamond.me",
-      "role": "admin",
-      "status": "active"
-    },
-    {
-      "id": 9,
-      "name": "Glenna Reichert",
-      "username": "Delphine",
-      "email": "Chaim_McDermott@dana.io",
-      "role": "admin",
-      "status": "active"
-    },
-    {
-      "id": 10,
-      "name": "Clementina DuBuque",
-      "username": "Moriah.Stanton",
-      "email": "Rey.Padberg@karina.biz",
-      "role": "admin",
-      "status": "active"
-    }
+    
   ]
 
   constructor() { }
 
-  addUser(user:users){
+  addUser(user:any){
     console.log(user);
     this.userList.push(user);
     
