@@ -5,7 +5,7 @@
                 <div class="d-flex col-sm-8">
                     <h2>User List</h2>
                     <button type="button" class="btn btn-primary rounded-pill mx-5" data-bs-toggle="modal"
-                        data-bs-target="#addUser"><i class="bi bi-plus"></i> Add New User</button>
+                        data-bs-target="#addOrEditUser" (click)="addHeading()"><i class="bi bi-plus"></i> Add New User</button>
                 </div>
 
                 <div class="col-sm-4">
@@ -40,7 +40,7 @@
                         <a class="view" title="View" data-toggle="tooltip" data-bs-toggle="modal"
                             data-bs-target="#viewUser" (click)="view(user)"><i class="bi bi-eye"></i></a>
                         <a class="edit" title="Edit" data-toggle="tooltip" data-bs-toggle="modal"
-                            data-bs-target="#editUser" (click)="delete(user.id)"><i class="bi bi-pencil-square"></i></a>
+                            data-bs-target="#addOrEditUser" (click)="addOrEdit(user)"><i class="bi bi-pencil-square"></i></a>
                         <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete(user.id)"><i
                                 class="bi bi-trash-fill"></i></a>
                     </td>
@@ -49,12 +49,12 @@
         </table>
     </div>
     <ng-container>
-        <div class="modal fade" tabindex="-1" id="addUser" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div class="modal fade" tabindex="-1" id="addOrEditUser" data-bs-backdrop="static" data-bs-keyboard="false"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add New User</h5>
+                        <h5 class="modal-title">{{formHeading}}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -93,28 +93,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" (click)="add()">Add</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-
-    <ng-container>
-        <div class="modal fade" tabindex="-1" id="editUser" data-bs-backdrop="static" data-bs-keyboard="false"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit User Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary" [ngClass] = "{'showNone': editFlag}" data-bs-dismiss="modal" (click)="addOrEdit()">Add</button>
+                        <button type="button" class="btn btn-primary" [ngClass] = "{'showNone': !editFlag}" data-bs-dismiss="modal" (click)="saveChanges()">Save Changes</button>
                     </div>
                 </div>
             </div>

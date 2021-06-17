@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup ,ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,19 +11,21 @@ export class AdminComponent implements OnInit {
 
   users: any[];
   searchField: any;
-  viewData : any;
+  viewData: any;
+  formHeading: string;
+  fBtnText: string;
+  editFlag: boolean = true;
+  userForm: FormGroup;
 
-  userForm : FormGroup ;
 
-  
 
   constructor(private userService: UserService) {
     this.users = this.userService.userList;
-    
+
   }
 
   ngOnInit(): void {
-    
+
     //Form Add 
     this.userForm = new FormGroup({
       id: new FormControl(''),
@@ -34,22 +36,42 @@ export class AdminComponent implements OnInit {
       status: new FormControl(''),
     });
   }
-  
-  get form() {return this.userForm.controls} ;
 
-  view(user:any){
+  get form() { return this.userForm.controls };
+
+  view(user: any) {
     this.viewData = user;
-    console.log(user)   
+    console.log(user)
   }
 
 
-  delete(id :number ){
+  delete(id: number) {
     this.userService.deleteUser(id);
   }
-  add(){
-    this.userService.addUser(this.userForm.value);
-    
+  addOrEdit(user?: any) {
+    if (user != null) {
+      this.editFlag = true;
+      this.formHeading = "Edit User Details";
+      this.fBtnText = "Save Changes";
+      console.log(user);
+      this.userForm.setValue(user);
+      // this.userService.editUser(user);
+    }
+    if (!this.editFlag) {
+      this.userService.addUser(this.userForm.value);
+    }
+
   }
 
+  saveChanges(){
+    this.userService.editUser(this.userForm.value);
+  }
+
+  addHeading() {
+    this.formHeading = "Add User";
+    this.fBtnText = "Add";
+    this.editFlag = false;
+
+  }
 
 }
