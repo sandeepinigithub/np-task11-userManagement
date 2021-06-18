@@ -35,7 +35,7 @@
                     <td>{{user.username}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>
-                    <td>{{user.status}}</td>
+                    <td [ngClass] = "{'greenBackground':user.status=='active', 'redBackground' : user.status != 'active'}">{{user.status}}</td>
                     <td>
                         <a class="view" title="View" data-toggle="tooltip" data-bs-toggle="modal"
                             data-bs-target="#viewUser" (click)="view(user)"><i class="bi bi-eye"></i></a>
@@ -62,12 +62,25 @@
                             <div class="mb-3">
                                 <label for="userId" class="form-label">User Id : </label>
                                 <input type="number" class="form-control" id="userId" placeholder="Id"
-                                    formControlName="id">
+                                    formControlName="id" required>
+                                    <div class="fs-6 text-danger " *ngIf="this.form.id.errors?.required">
+                                        Id is required.
+                                      </div>
                             </div>
                             <div class="mb-3">
                                 <label for="userName" class="form-label">Name : </label>
                                 <input type="text" class="form-control" id="userName" placeholder="Name"
-                                    formControlName="name">
+                                    formControlName="name" required>
+                                    <!-- kkk -->
+                                    
+                                    <div class="fs-6 text-danger " *ngIf="this.form.name.errors?.required">
+                                        Name is required.
+                                      </div>
+
+                                      <div class="fs-6 text-danger " *ngIf="this.form.name.errors?.minlength">
+                                        Name must be at least 4 characters long.
+                                      </div>
+                                      <!-- lll  -->
                             </div>
                             <div class="mb-3">
                                 <label for="userUsername" class="form-label">Username : </label>
@@ -77,7 +90,11 @@
                             <div class="mb-3">
                                 <label for="userEmail" class="form-label">Email : </label>
                                 <input type="email" class="form-control" id="userEmail" placeholder="Email"
-                                    formControlName="email">
+                                    formControlName="email" required>
+
+                                    <div class="fs-6 text-danger " *ngIf="this.form.email.errors?.required">
+                                        Email is required.
+                                      </div>
                             </div>
                             <div class="mb-3">
                                 <label for="userRole" class="form-label">Role : </label>
@@ -93,7 +110,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" [ngClass] = "{'showNone': editFlag}" data-bs-dismiss="modal" (click)="addOrEdit()">Add</button>
+                        <button type="button" class="btn btn-primary" [ngClass] = "{'showNone': editFlag}" data-bs-dismiss="modal" (click)="addOrEdit()" [disabled]="this.form.name.errors?.required  || this.form.name.errors?.minlength || this.form.id.errors?.required || this.form.email.errors?.required">Add</button>
                         <button type="button" class="btn btn-primary" [ngClass] = "{'showNone': !editFlag}" data-bs-dismiss="modal" (click)="saveChanges()">Save Changes</button>
                     </div>
                 </div>

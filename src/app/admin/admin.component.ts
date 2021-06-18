@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AfterViewInit, Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -19,17 +19,17 @@ export class AdminComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService) { 
     this.users = this.userService.userList;
-
   }
+
 
   ngOnInit(): void {
 
     //Form Add 
     this.userForm = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl(''),
+      name: new FormControl('',[Validators.required,Validators.minLength(4)]),
       username: new FormControl(''),
       email: new FormControl(''),
       role: new FormControl(''),
