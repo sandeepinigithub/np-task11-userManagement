@@ -11,7 +11,7 @@ export class AdminComponent implements OnInit {
 
   users: any[];
   searchField: any;
-  viewData: any;
+  viewData: any =[];
   formHeading: string;
   fBtnText: string;
   editFlag: boolean = true;
