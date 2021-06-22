@@ -5,11 +5,11 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/np-task11-userManagement'));
+app.use(express.static(__dirname + '/dist/np-user-management'));
 
 app.get('/*', function(req,res) {
     
-res.sendFile(path.join(__dirname+'/dist/np-task11-userManagement/index.html'));
+res.sendFile(path.join(__dirname+'/dist/np-user-management/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
